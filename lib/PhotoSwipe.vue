@@ -78,23 +78,20 @@ export default {
     },
 
     $_addListeners () {
-      this.$previewer.listen('close', this.$_destroy)
+      this.$previewer.listen('destroy', this.$_destroy)
       this.$previewer.listen('gettingData', (index, current) => void setOriginImageSize(current))
     },
 
     $_destroy () {
-      const hideAnimationDuration = this.$previewer.options.hideAnimationDuration + 50
-      setTimeout(() => {
-        const exhibitions = document.querySelectorAll('.v-photoswipe-exhibition')
+      const exhibitions = document.querySelectorAll('.v-photoswipe-exhibition')
 
-        for (const exhibition of exhibitions) {
-          document.body.removeChild(exhibition)
-        }
+      for (const exhibition of exhibitions) {
+        document.body.removeChild(exhibition)
+      }
 
-        this.$previewer = null
-        window.$previewer.$destroy()
-        window.$previewer = null
-      }, hideAnimationDuration)
+      this.$previewer = null
+      window.$previewer.$destroy()
+      window.$previewer = null
     }
   }
 }
